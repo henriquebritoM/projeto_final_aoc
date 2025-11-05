@@ -5,7 +5,7 @@ _start:
 	la s1, frame_end
 	li s2, 0x10c
 loop:
-	li a0, 0x1000000
+	li a0, 0x10000
 delay:
 	addi a0, a0, -1
 	sw a0, 0(s2)
@@ -19,7 +19,7 @@ delay:
 	j _start
 	
 .data	# 0x00000080 
-frame_buffer: # black, rgb, cmy, white
-	.word 0x000000, 0x300c03, 0x0f333c, 0xffffff
+frame_buffer: # black, zrgb, zcmy, white
+	.word 0x00000000, 0xaa300c03, 0xaa0f333c, 0xffffffff
 	.space 300-16
 frame_end:
