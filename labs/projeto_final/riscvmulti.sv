@@ -4,7 +4,8 @@ module riscvmulti (
     output [31:0] Address, 
     output [31:0] WriteData,
     output        MemWrite,
-    input  [31:0] ReadData, 
+    input  [31:0] ReadData,
+    output  [3:0] WriteMask, 
     output logic  halt = 0); 
 
     logic [31:0] instr, PC = 0;
@@ -42,7 +43,7 @@ module riscvmulti (
     // Ex: sb t0, 1(a0) -> byte t0 vai para bits [15:8] da palavra.
     assign WriteData = rs2 << (LoadStoreAddress[1:0] * 8);
 
-   //  Máscara de escrita conectada à saída
+    // Máscara de escrita conectada à saída
     assign WriteMask = GenWriteMask;
 
     // ---------------------------------------------------------
